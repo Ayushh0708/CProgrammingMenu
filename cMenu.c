@@ -2,7 +2,7 @@
 #include <ctype.h>
 
 
-void intro(){
+void intro(){                                                       //Introduction
     printf("\033[1m");
     printf("\033[2m");
     printf("\nIntroduction\n");
@@ -16,12 +16,24 @@ void intro(){
     printf("#include <stdio.h>\n\nint main(){\n\tprintf(\"Hello World\");\nreturn 0;\n}");
 
     printf("\033[1m");
-    printf("\n\n#include <stdio.h> is a header file library that lets us work with input and output functions, such as printf() (used in line 4). Header files add functionality to C programs.\n");
+    printf("\n\n#include <stdio.h> is a header file library that lets us work with input and output functions, such as printf() (used in line 4). Header files add functionality to C programs.\n\n\n");
     printf("\033[0m");
+
+
+
+    printf("\033[1m");
+    printf("DataTypes:\n");
+    printf("\033[0m");
+    
+    printf("1. int   :-\t It stores the whole number and have a size of \"2\" or \"4\" bytes.\n\t\t For ex.- 1\n");
+    printf("2. char  :-\t It stores one character/number(as character)/letter/ or ASCII value.\n\t\t For ex.- \'a\' , \'A\' , \'1\'\n");
+    printf("3. float :-\t It stores the fraction values, containing one or more decimals, sufficient for storing 6-7 decimals digits.\n\t\t For ex.- 1.09, 0.456672\n");
+    printf("4. double:-\t It stores the fraction values, containing one or more decimals, suffiecient for storing 15 decimal digits.\n\t\t For ex.- 23.9987487323\n");
+
 }
 
 
-void ifStatement(){
+void ifStatement(){                                                //If Statement example
     printf("\033[1m");
     printf("\033[2m");
     printf("If command(Syntax):");
@@ -52,41 +64,68 @@ void ifStatement(){
 int main(int argc, char const *argv[])
 {
     int inputMainTopic;
-    char continueOpt;
+    char continueOpt='n';
     printf("Welcome to the C Programing Restro\n\n");
 
-    do
+    int indexOpt=0;
+    do                                                             //Index And Options
     {
-        printf("1: C Introduction\n2: if and else-if\n3: Loops\n4: Functions\n");
-        printf("What would you like to learn?(Provide S.No.)\n");
+        printf("1: C Introduction\n2: if and else-if\n3: Switch\n4: Loops\n5: Break/Continue\n6: Functions\n");           //Option Menu
+        printf("What would you like to learn?(Provide S.No.)\n\n");
 
         scanf("%d", &inputMainTopic);
 
-        if (inputMainTopic > 4 && inputMainTopic < 1)
-        {
-            printf("Please enter the valid option.");
-        }
-        else
+        while (getchar() != '\n');
+
+        if(inputMainTopic <= 6 && inputMainTopic >= 1)
         {
             switch (inputMainTopic)
             {
             case 1:
                 intro();
-                
                 break;
 
             case 2:
                 ifStatement();
+                break;
+
             default:
                 break;
             }
+
+            indexOpt=1;
+            int a=0;
+            do{                                     //Asking for continue study
+        printf("\n\nWants to continue learning? (y/n): ");
+        scanf(" %c",&continueOpt);
+
+        if(isdigit(continueOpt)){
+            printf("Please enter (Y/y) for \"Yes\" or (N/n) for \"No\"");}
+
+        else if(isalpha(continueOpt)) {
+                continueOpt=tolower(continueOpt);
+                if(continueOpt=='y' || continueOpt=='n'){
+                    a=1;
+                }else {
+                    printf("Please enter (Y/y) for \"Yes\" or (N/n) for \"No\"");
+                }
+        }else{
+            printf("Please enter the value from the desired options");
+        }
+           
+            }while(a==0);
+            }
+       
+        else
+        {   printf("\033[1m");
+            printf("\nPlease enter the valid option.\n\n");
+            printf("\033[0m");
         }
 
         
-        printf("\n\nWants to continue learning? (y/n): ");
-        scanf(" %c",&continueOpt);
-        continueOpt=tolower(continueOpt);
-    }while(continueOpt=='y');
+
+        
+    }while(continueOpt=='y' || indexOpt==0);
 
     return 0;
 }
